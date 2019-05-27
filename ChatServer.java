@@ -23,9 +23,6 @@ public class ChatServer {
 }
 
 class ChatThread extends Thread{
-    
-    private static String[] badword = {"fuck", "crazy" , "씨발", "꺼져", "잠와" };
-    // static 배열에 badwords를 만들어 저장했다.
     private Socket sock;
     private String id;
     private BufferedReader br;
@@ -50,9 +47,14 @@ class ChatThread extends Thread{
     } // construcor
     public void run(){
         try{
+            String bad = "fuck crazy shit holy fuxx";
+            // badwords 를 설정해 주었다.
             String line = null;
             while((line = br.readLine()) != null){
-                    if(line.equals("/quit"))
+                String line1 = line.toLowerCase();
+                if(line1.contains("fuck") || line1.contains("crazy") || line1.contains("shit") || line1.contains("holy") || line1.contains("fuxx"))
+                    badword();
+                    else if(line.equals("/quit"))
                         break;
                     else if(line.indexOf("/to ") == 0){
                         sendmsg(line);
@@ -60,21 +62,6 @@ class ChatThread extends Thread{
                     else if(line.equals("/userList")) {
                         send_userList();
                         //userlist 출력.
-                    }
-                    else if (line.contains("fuck")) {
-                        dont_badword();
-                    }
-                    else if (line.contains("crazy")) {
-                        dont_badword();
-                    }
-                    else if (line.contains("시발")) {
-                        dont_badword();
-                    }
-                    else if (line.contains("싫어")) {
-                        dont_badword();
-                    }
-                    else if (line.contains("fuxx")) {
-                            dont_badword();
                     }
                     else
                     broadcast(id + " = " + line);
@@ -148,17 +135,14 @@ class ChatThread extends Thread{
     } //send_userlist
 }
 
-public void dont_badword() {
+public void badword() {
     synchronized(hm)    {
-    Iterator iter2 = hm.values().iterator();
-    PrintWriter pw3 = (PrintWriter)hm.get(id);
-    while(iter2.hasNext()) {
-        PrintWriter pw = (PrintWriter)iter2.next();
-        if(pw==pw3) {
+Object obj = hm.get(id);
+if(onj != null) {
+PrintWriter pw = (PrintWriter)obj;
                 pw.println("don't use badwords!!");
                 pw.flush();
                     }
                 }
             }
     }
-}
