@@ -152,7 +152,8 @@ synchronized(hm)    {
         if(pw==pw4) {
         pw.println("don't use badwords!!");
         pw.flush();
+                    }
                 }
-        }
+            }
     }
 }
