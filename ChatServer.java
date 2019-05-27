@@ -116,25 +116,20 @@ class ChatThread extends Thread{
     
     public void send_userList() {
         synchronized(hm) {
-            Set key = hm.keySet();
-            for( Iterator iterator = key.iterator(); iterator.hasNext();) {
-                // iterator method 로 키값을 받아온 후, 다음값이 없을때 까지 반복문을 돌린다.
-                String id = (String) iterator.next();
-                // string에 값을 저장한 후, 본인에게 출력 해준다.
-                pw.print(id + " ");
-                pw.println();
+            Object obj = hm.get(id); // id의 pw 의 값을 얻는다
+            if(obj != null) {
+                PrintWriter pw (PrintWriter)obj;
+                pw.println("유저의 수는 " + hm.size() + " : " +hm.keySet());
+                // hm.size와 hm.keyset으로 얼마나 많은 유저가 들어있는지 출력.
+                pw.flush();
             }
         }
-        int a = java.lang.Thread.activeCount()-1;
-        //현재 사용하고 있는 thread의 값은 java.lang.Thread.activeCount()를 통해서 받아온다.
-        //현재 가동되고 있는 서버를 제외해야 정확한 유저 수므로 -1 을 해주었다.
-        pw.println("현재 총 접속자" + ": " + a);
-        pw.flush();
     } //send_userlist
 
     public void badword() {
         synchronized(hm)    {
                 Object obj = hm.get(id);
+                // id 의 값을 얻음.
             if(obj != null) {
                 PrintWriter pw = (PrintWriter)obj;
                     pw.println("don't use badwords!!");
