@@ -49,7 +49,7 @@ class ChatThread extends Thread{
         try{
             String line = null;
             while((line = br.readLine()) != null){
-                if(!line.equals("oss망해라") && !line.equals("fuck") && line.equals("과제 존나싫어") && line.eqauls("your grade is c")) {
+                if(!line.equals("oss망해라") && !line.equals("fuck") && !line.equals("과제 존나싫어") && !line.eqauls("your grade is c") && !line.equals("hate")) {
                     if(line.equals("/quit"))
                         break;
                     if(line.indexOf("/to ") == 0){
