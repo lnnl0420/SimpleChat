@@ -56,13 +56,11 @@ class ChatThread extends Thread{
                     badword();
                     else if(line.equals("/quit"))
                         break;
-                    else if(line.indexOf("/to ") == 0){
+                    else if(line.indexOf("/to ") == 0)
                         sendmsg(line);
-                    }
-                    else if(line.equals("/userList")) {
+                    else if(line.equals("/userList"))
                         send_userList();
                         //userlist 출력.
-                    }
                     else
                     broadcast(id + " = " + line);
                 }
@@ -144,4 +142,4 @@ class ChatThread extends Thread{
                         }
                 }
             }
-    }
+}
