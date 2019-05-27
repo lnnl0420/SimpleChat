@@ -118,7 +118,7 @@ class ChatThread extends Thread{
         synchronized(hm) {
             Object obj = hm.get(id); // id의 pw 의 값을 얻는다
             if(obj != null) {
-                PrintWriter pw (PrintWriter)obj;
+                PrintWriter pw = (PrintWriter)obj;
                 pw.println("유저의 수는 " + hm.size() + " : " +hm.keySet());
                 // hm.size와 hm.keyset으로 얼마나 많은 유저가 들어있는지 출력.
                 pw.flush();
