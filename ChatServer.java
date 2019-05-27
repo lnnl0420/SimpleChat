@@ -23,6 +23,9 @@ public class ChatServer {
 }
 
 class ChatThread extends Thread{
+    
+    private static String[] badword = {"fuck", "crazy" , "씨발", "꺼져", "잠와" };
+    // static 배열에 badwords를 만들어 저장했다.
     private Socket sock;
     private String id;
     private BufferedReader br;
@@ -49,23 +52,33 @@ class ChatThread extends Thread{
         try{
             String line = null;
             while((line = br.readLine()) != null){
-                if(!line.equals("oss망해라") && !line.equals("fuck") && !line.equals("과제 존나싫어") && !line.eqauls("your grade is c") && !line.equals("hate")) {
                     if(line.equals("/quit"))
                         break;
-                    if(line.indexOf("/to ") == 0){
+                    else if(line.indexOf("/to ") == 0){
                         sendmsg(line);
                     }
                     else if(line.equals("/userList")) {
                         send_userList();
+                        //userlist 출력.
+                    }
+                    else if (line.contains("fuck")) {
+                        badword();
+                    }
+                    else if (line.contains("crazy")) {
+                        badword();
+                    }
+                    else if (line.contains("시발")) {
+                        badword();
+                    }
+                    else if (line.contains("싫어")) {
+                        badword();
+                    }
+                    else if (line.contains("fuxx")) {
+                            badword();
                     }
                     else
-                        broadcast(id + " : " + line);
+                    broadcast(id + " = " + line);
                 }
-                else {
-                    pw.println("Do not use bad words! Use good words~^^");
-                    pw.flush();
-                }
-            }
         }catch(Exception ex){
             System.out.println(ex);
         }finally{
@@ -79,7 +92,7 @@ class ChatThread extends Thread{
             }catch(Exception ex){}
         }
     } // run
-    // line 으로 읽어들이는 문자에 금지어가 포함되어 있는지 'contains' 메소드(함수)로 확인을 하고, 금지어가 모두 포함되어
+    // line 으로 읽어들이는 문자에 금지어가 포함되어 있는지 'contains' 메소드(함수)로 확인을 하고, 금지어가 포함되어
     // 있다면 자신의 창에 경고문이 띄어지고, 만약 없다면 정상적인 출력 기능을 하게 하였다.
     public void sendmsg(String msg){
         int start = msg.indexOf(" ") +1;
