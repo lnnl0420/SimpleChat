@@ -138,7 +138,7 @@ class ChatThread extends Thread{
 public void badword() {
     synchronized(hm)    {
 Object obj = hm.get(id);
-if(onj != null) {
+if(obj != null) {
 PrintWriter pw = (PrintWriter)obj;
                 pw.println("don't use badwords!!");
                 pw.flush();
