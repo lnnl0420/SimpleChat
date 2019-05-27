@@ -133,7 +133,6 @@ class ChatThread extends Thread{
         pw.println("현재 총 접속자" + ": " + a);
         pw.flush();
     } //send_userlist
-}
 
 public void badword() {
     synchronized(hm)    {
