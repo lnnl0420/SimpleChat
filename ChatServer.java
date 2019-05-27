@@ -1,4 +1,4 @@
-나의 깃주소 : https://github.com/lnnl0420/SimpleChat.git
+//나의 깃주소 : https://github.com/lnnl0420/SimpleChat.git
 
 import java.net.*;
 import java.io.*;
@@ -49,7 +49,7 @@ class ChatThread extends Thread{
         try{
             String line = null;
             while((line = br.readLine()) != null){
-                if(!line.equals("oss망해라") && !line.equals("fuck")) && line.equals("과제 존나싫어") && line.eqauls("your grade is c")) {
+                if(!line.equals("oss망해라") && !line.equals("fuck") && line.equals("과제 존나싫어") && line.eqauls("your grade is c")) {
                     if(line.equals("/quit"))
                         break;
                     if(line.indexOf("/to ") == 0){
