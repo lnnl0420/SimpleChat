@@ -132,14 +132,27 @@ class ChatThread extends Thread{
                 String id = (String) iterator.next();
                 // string에 값을 저장한 후, 본인에게 출력 해준다.
                 pw.print(id + " ");
-                pw.pringln();
+                pw.println();
             }
         }
         int a = java.lang.Thread.activeCount()-1;
         //현재 사용하고 있는 thread의 값은 java.lang.Thread.activeCount()를 통해서 받아온다.
         //현재 가동되고 있는 서버를 제외해야 정확한 유저 수므로 -1 을 해주었다.
-        pw.printfln("현재 총 접속자" + ": " + a);
+        pw.println("현재 총 접속자" + ": " + a);
         pw.flush();
     } //send_userlist
 }
 
+public void badword() {
+synchronized(hm)    {
+    Iterator iter2 = hm.values().Iterator();
+    PrintWriter pw4 = (PrintWriter)hm.get(id);
+    while(iter2.hasNext()) {
+        PrintWriter pw = (PrintWriter)iter2.next();
+        if(pw==pw4) {
+        pw.println("don't use badwords!!");
+        pw.flush();
+                }
+        }
+    }
+}
