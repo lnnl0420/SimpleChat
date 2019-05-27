@@ -134,14 +134,14 @@ class ChatThread extends Thread{
         pw.flush();
     } //send_userlist
 
-public void badword() {
-    synchronized(hm)    {
-Object obj = hm.get(id);
-if(obj != null) {
-PrintWriter pw = (PrintWriter)obj;
-                pw.println("don't use badwords!!");
-                pw.flush();
-                    }
+    public void badword() {
+        synchronized(hm)    {
+                Object obj = hm.get(id);
+            if(obj != null) {
+                PrintWriter pw = (PrintWriter)obj;
+                    pw.println("don't use badwords!!");
+                    pw.flush();
+                        }
                 }
             }
     }
