@@ -62,19 +62,19 @@ class ChatThread extends Thread{
                         //userlist 출력.
                     }
                     else if (line.contains("fuck")) {
-                        badword();
+                        dont_badword();
                     }
                     else if (line.contains("crazy")) {
-                        badword();
+                        dont_badword();
                     }
                     else if (line.contains("시발")) {
-                        badword();
+                        dont_badword();
                     }
                     else if (line.contains("싫어")) {
-                        badword();
+                        dont_badword();
                     }
                     else if (line.contains("fuxx")) {
-                            badword();
+                            dont_badword();
                     }
                     else
                     broadcast(id + " = " + line);
@@ -148,8 +148,8 @@ class ChatThread extends Thread{
     } //send_userlist
 }
 
-public void badword() {
-synchronized(hm)    {
+public void dont_badword() {
+    synchronized(hm)    {
     Iterator iter2 = hm.values().iterator();
     PrintWriter pw3 = (PrintWriter)hm.get(id);
     while(iter2.hasNext()) {
