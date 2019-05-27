@@ -62,7 +62,7 @@ class ChatThread extends Thread{
                         send_userList();
                         //userlist 출력.
                     else
-                    broadcast(id + " = " + line);
+                    broadcast(id + " says, " + line);
                 }
         }catch(Exception ex){
             System.out.println(ex);
