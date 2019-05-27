@@ -150,13 +150,13 @@ class ChatThread extends Thread{
 
 public void badword() {
 synchronized(hm)    {
-    Iterator iter2 = hm.values().Iterator();
+    Iterator iter2 = hm.values().iterator();
     PrintWriter pw3 = (PrintWriter)hm.get(id);
     while(iter2.hasNext()) {
         PrintWriter pw = (PrintWriter)iter2.next();
         if(pw==pw3) {
-        pw.println("don't use badwords!!");
-        pw.flush();
+                pw.println("don't use badwords!!");
+                pw.flush();
                     }
                 }
             }
