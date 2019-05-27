@@ -111,17 +111,22 @@ class ChatThread extends Thread{
     public void broadcast(String msg){
         synchronized(hm){
             Collection collection = hm.values();
+            //collection 을 통해서 hm.values 값을 가져온다.
             Iterator iter = collection.iterator();
+            PrintWriter pw2 = (PrintWriter)hm.get(id);
+            // 현재 id의 value를 pw2에 저장한다.
             while(iter.hasNext()){
-                PrintWriter pw = (PrintWriter)iter.next();
-                if(pw != hm.get(id)){
-                    // 해쉬맵에 저장돠어 있는 값(id)을 확인할 때, 확인된 값이 현재 유저의 아이디(자기자신)가 아니라면,
-                    // 메시지를 출력하게 만듬.
+                //반복문을 통해 value값에 있는것을 pw 에 저장
+                    PrintWriter pw = (PrintWriter)iter.next();
+                    if(pw!=pw2 ){
+                    // 저장한 pw와 pw2의 value가 일치하지 않으면, msg 출력
+                    // 일치하면 자신이라는 뜻이므로, 메시지를 출력하지 않음.
                     pw.println(msg);
                     pw.flush();
-                }
+                    }
+                    else;
             }
-        } // broadcast
+        }
     }
     
     public void send_userList() {
@@ -146,10 +151,10 @@ class ChatThread extends Thread{
 public void badword() {
 synchronized(hm)    {
     Iterator iter2 = hm.values().Iterator();
-    PrintWriter pw4 = (PrintWriter)hm.get(id);
+    PrintWriter pw3 = (PrintWriter)hm.get(id);
     while(iter2.hasNext()) {
         PrintWriter pw = (PrintWriter)iter2.next();
-        if(pw==pw4) {
+        if(pw==pw3) {
         pw.println("don't use badwords!!");
         pw.flush();
                     }
